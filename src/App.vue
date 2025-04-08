@@ -1,26 +1,36 @@
 <script setup>
 import { ref } from 'vue'
 
-const contador1 = ref (0);
+const contador1 = ref(0);
 const contador2 = ref(0);
+const booleano = ref(true);
 
-function incrementar1 () {
+function incrementar1() {
   contador1.value++
 }
 
-function decrementar1 () {
+function decrementar1() {
   contador1.value--
 }
-function incrementar2 () {
+function incrementar2() {
   contador2.value++
 }
 
-function decrementar2 () {
+function decrementar2() {
   contador2.value--
+}
+function ehPar(num) {
+  return num % 2 == 0;
 }
 </script>
 
 <template>
+  <div >
+    <button @click="booleano = !booleano">
+      {{ booleano ? "Esconder conteúdo " : "Mostrar conteúdo" }}
+    </button>
+  </div>
+  <div v-if="booleano">
   <div>
     <h1>Contador 1</h1>
     <p>Valor do contador : {{ contador1 }}</p>
@@ -38,17 +48,31 @@ function decrementar2 () {
   <div>
     <p>A soma dos contadores é: {{ contador1 + contador2 }}</p>
   </div>
+  <div v-if="ehPar(contador1 + contador2) == true">
+    <p>A soma é par</p>
+  </div>
+  <div v-else>
+    <p>A soma é impar</p>
+  </div>
+</div>
 </template>
 
 <style scoped>
- button{
-  background-color: aqua;
+button {
+  cursor: pointer;
+  color: rgb(112, 17, 121);
+  background-color: rgb(0, 19, 126);
   margin: 2vw;
-  color: black;
   padding: 15px;
   border-radius: 10px;
- }
- div p {
-
- }
+  border-color: rgb(112, 17, 121);
+  /* border: 0 */
+}
+h1{
+  color: rgb(234, 0, 255);
+}
+p{
+  color: blue;
+}
+/* div p {} */
 </style>
